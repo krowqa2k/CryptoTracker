@@ -13,7 +13,6 @@ struct CryptoTrackerApp: App {
         WindowGroup {
             NavigationStack {
                 HomeView()
-                    .toolbar(.hidden)
             }
         }
     }
