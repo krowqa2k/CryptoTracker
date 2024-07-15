@@ -18,6 +18,8 @@ struct HomeView: View {
                 .padding(.horizontal)
                 Spacer(minLength: 0)
             
+            SearchBarView(searchText: $vm.searchText)
+            
             columnTitles
                 .font(.caption)
                 .foregroundStyle(Color.theme.secondaryText)
