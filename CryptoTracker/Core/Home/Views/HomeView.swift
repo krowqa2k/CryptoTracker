@@ -11,6 +11,7 @@ struct HomeView: View {
     
     @EnvironmentObject private var vm: HomeViewModel
     @State private var showPortfolio: Bool = false
+    @State private var showPortfolioView: Bool = false
     
     var body: some View {
         VStack {
@@ -39,13 +40,16 @@ struct HomeView: View {
             
         }
         .background(Color.theme.background)
+        .sheet(isPresented: $showPortfolioView, content: {
+            PorfolioView()
+        })
     }
 }
 
-//#Preview {
-//    HomeView()
-//        .environmentObject(HomeViewModel())
-//}
+#Preview {
+    HomeView()
+        .environmentObject(HomeViewModel())
+}
 
 extension HomeView {
     
@@ -53,6 +57,11 @@ extension HomeView {
         HStack {
             RoundedRectangleButtonView(iconName: showPortfolio ? "plus" : "info")
                 .animation(.none, value: showPortfolio)
+                .onTapGesture {
+                    if showPortfolio {
+                        showPortfolioView.toggle()
+                    }
+                }
             Spacer()
             Text(showPortfolio ? "Portfolio" : "Live Prices")
                 .font(.headline)
