@@ -18,7 +18,10 @@ struct HomeView: View {
                 .padding(.horizontal)
                 Spacer(minLength: 0)
             
+            HomeStatsView(showPortfolio: $showPortfolio)
+            
             SearchBarView(searchText: $vm.searchText)
+                .padding()
             
             columnTitles
                 .font(.caption)
@@ -39,10 +42,10 @@ struct HomeView: View {
     }
 }
 
-#Preview {
-    HomeView()
-        .environmentObject(HomeViewModel())
-}
+//#Preview {
+//    HomeView()
+//        .environmentObject(HomeViewModel())
+//}
 
 extension HomeView {
     
