@@ -15,11 +15,16 @@ class HomeViewModel: ObservableObject {
     @Published var allCoins: [CoinModel] = []
     @Published var portfolioCoins: [CoinModel] = []
     @Published var searchText: String = ""
+    @Published var sortOption: SortOption = .holdings
     
     private let coinDataService = CoinDataService()
     private let marketDataService = MarketDataService()
     private let portfolioDataService = PortfolioDataService()
     private var cancellables = Set<AnyCancellable>()
+    
+    enum SortOption {
+        case rank, rankReversed, holdings, holdingsReversed, price, priceReversed
+    }
     
     init() {
         addSubscribers()
@@ -38,19 +43,8 @@ class HomeViewModel: ObservableObject {
             .store(in: &cancellables)
         
         $searchText
-            .combineLatest(coinDataService.$allCoins)
-            .map { (text, startingCoins ) -> [CoinModel] in
-                guard !text.isEmpty else {
-                    return startingCoins
-                }
-                
-                let lowercasedText = text.lowercased()
-                
-                let filteredCoins = startingCoins.filter { coin in
-                    return coin.name.lowercased().contains(lowercasedText) || coin.symbol.lowercased().contains(lowercasedText) || coin.id.lowercased().contains(lowercasedText)
-                }
-                return filteredCoins
-            }
+            .combineLatest(coinDataService.$allCoins, $sortOption)
+            .map(filterAndSortCoins)
             .sink { [weak self] returnedCoins in
                 self?.allCoins = returnedCoins
             }
@@ -91,12 +85,12 @@ class HomeViewModel: ObservableObject {
         let btcDominance = StatisticModel(title: "BTC Dominance", value: data.btcDominance)
         
         let portfolioValue =
-            portfolioCoins
-                .map({ $0.currentHoldingsValue })
-                .reduce(0, +)
+        portfolioCoins
+            .map({ $0.currentHoldingsValue })
+            .reduce(0, +)
         
         let previousValue =
-            portfolioCoins
+        portfolioCoins
             .map { coin -> Double in
                 let currentValue = coin.currentHoldingsValue
                 let percentageChange = (coin.priceChangePercentage24H ?? 0) / 100
@@ -112,4 +106,36 @@ class HomeViewModel: ObservableObject {
         stats.append(contentsOf: [marketCap, volume, btcDominance, portfolio])
         return stats
     }
-}
+    
+    private func filterAndSortCoins(text: String, coins: [CoinModel], sort: SortOption) -> [CoinModel] {
+        var updatedCoins = filterCoins(text: text, coins: coins)
+        sortCoins(sort: sort, coins: &updatedCoins)
+        return updatedCoins
+    }
+        
+        private func sortCoins(sort: SortOption, coins: inout [CoinModel]) {
+            switch sort {
+            case .rank, .holdings:
+                coins.sort(by: { $0.rank < $1.rank })
+            case .rankReversed, .holdingsReversed:
+                coins.sort(by: { $0.rank > $1.rank })
+            case .price:
+                coins.sort(by: { $0.currentPrice > $1.currentPrice })
+            case.priceReversed:
+                coins.sort(by: { $0.currentPrice < $1.currentPrice })
+            }
+        }
+    
+        private func filterCoins(text: String, coins: [CoinModel]) -> [CoinModel] {
+            guard !text.isEmpty else {
+                return coins
+            }
+            
+            let lowercasedText = text.lowercased()
+            
+            return coins.filter { coin -> Bool in
+                return coin.name.lowercased().contains(lowercasedText) || coin.symbol.lowercased().contains(lowercasedText) || coin.id.lowercased().contains(lowercasedText)
+            }
+        }
+    }
+

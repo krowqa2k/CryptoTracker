@@ -15,7 +15,7 @@ struct HomeStatsView: View {
     var body: some View {
         VStack {
             RoundedRectangle(cornerRadius: 12)
-                .frame(width: 385, height: 250)
+                .frame(width: 385, height: 220)
                 .foregroundStyle(Color.theme.background)
                 .shadow(color:Color.theme.accent ,radius: 5)
                 .overlay {
@@ -26,9 +26,10 @@ struct HomeStatsView: View {
                         }
                     }
                     .frame(width: UIScreen.main.bounds.width, alignment: showPortfolio ? .trailing : .leading)
+                    .padding()
                 }
         }
-        .padding(.horizontal)
+        .padding()
     }
 }
 

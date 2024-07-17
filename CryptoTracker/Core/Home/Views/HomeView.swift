@@ -46,10 +46,10 @@ struct HomeView: View {
     }
 }
 
-//#Preview {
-//    HomeView()
-//        .environmentObject(HomeViewModel())
-//}
+#Preview {
+    HomeView()
+        .environmentObject(HomeViewModel())
+}
 
 extension HomeView {
     
@@ -100,13 +100,51 @@ extension HomeView {
     
     private var columnTitles: some View {
         HStack {
-            Text("Coin")
+            HStack(spacing: 4) {
+                Text("Coin")
+                Image(systemName: "chevron.down")
+                    .opacity((vm.sortOption == .rank || vm.sortOption == .rankReversed) ? 1.0 : 0.0)
+                    .rotationEffect(Angle(degrees: vm.sortOption == .rank ? 0 : 180))
+            }
+            .onTapGesture {
+                if vm.sortOption == .rank {
+                    vm.sortOption = .rankReversed
+                } else {
+                    vm.sortOption = .rank
+                }
+            }
+            
             Spacer()
             if showPortfolio {
-                Text("Holdings")
+                HStack(spacing: 4) {
+                    Text("Holdings")
+                        .frame(width: UIScreen.main.bounds.width / 3.5, alignment: .trailing)
+                    Image(systemName: "chevron.down")
+                        .opacity((vm.sortOption == .holdings || vm.sortOption == .holdingsReversed) ? 1.0 : 0.0)
+                        .rotationEffect(Angle(degrees: vm.sortOption == .holdings ? 0 : 180))
+                }
+                .onTapGesture {
+                    if vm.sortOption == .holdings {
+                        vm.sortOption = .holdingsReversed
+                    } else {
+                        vm.sortOption = .holdings
+                    }
+                }
             }
-            Text("Price")
-                .frame(width: UIScreen.main.bounds.width / 3.5, alignment: .trailing)
+            HStack(spacing: 4) {
+                Text("Price")
+                    .frame(width: UIScreen.main.bounds.width / 3.5, alignment: .trailing)
+                Image(systemName: "chevron.down")
+                    .opacity((vm.sortOption == .price || vm.sortOption == .priceReversed) ? 1.0 : 0.0)
+                    .rotationEffect(Angle(degrees: vm.sortOption == .price ? 0 : 180))
+            }
+            .onTapGesture {
+                if vm.sortOption == .price {
+                    vm.sortOption = .priceReversed
+                } else {
+                    vm.sortOption = .price
+                }
+            }
         }
     }
 }
