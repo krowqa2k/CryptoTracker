@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct PorfolioView: View {
+struct PortfolioView: View {
     
     @EnvironmentObject private var vm: HomeViewModel
     @State private var selectedCoin: CoinModel? = nil
@@ -140,6 +140,6 @@ struct PorfolioView: View {
 }
 
 #Preview {
-    PorfolioView()
+    PortfolioView()
         .environmentObject(HomeViewModel())
 }

@@ -41,7 +41,7 @@ struct HomeView: View {
         }
         .background(Color.theme.background)
         .sheet(isPresented: $showPortfolioView, content: {
-            PorfolioView()
+            PortfolioView()
         })
     }
 }
