@@ -12,7 +12,7 @@ struct PorfolioView: View {
     @EnvironmentObject private var vm: HomeViewModel
     @State private var selectedCoin: CoinModel? = nil
     @State private var quantityText: String = ""
-    @State private var showCheckMark: Bool = false
+    @State private var showCheckmark: Bool = false
     @Environment(\.dismiss) var dismiss
     
     var body: some View {
@@ -80,9 +80,9 @@ struct PorfolioView: View {
                 ToolbarItem(placement: .topBarTrailing) {
                     HStack(spacing: 10) {
                         Image(systemName: "checkmark")
-                            .opacity(showCheckMark ? 1.0 : 0.0)
+                            .opacity(showCheckmark ? 1.0 : 0.0)
                         Button(action: {
-                            
+                            saveButtonPressed()
                         }, label: {
                             Text("Save".uppercased())
                         })
@@ -91,11 +91,11 @@ struct PorfolioView: View {
                     .font(.headline)
                 }
             }
-            .onChange(of: vm.searchText, perform: { value in
-                if value == "" {
+            .onChange(of: vm.searchText) {
+                if vm.searchText == "" {
                     removeSelectedCoin()
                 }
-            })
+            }
         }
     }
     
@@ -108,14 +108,17 @@ struct PorfolioView: View {
     
     private func saveButtonPressed() {
         
-        guard let coin = selectedCoin else { return }
+        guard 
+            let coin = selectedCoin,
+            let amount = Double(quantityText)
+            else { return }
         
         // save to portfolio
-        
+        vm.updatePortfolio(coin: coin, amount: amount)
         
         // show checkmark
         withAnimation(.easeIn) {
-            showCheckMark = true
+            showCheckmark = true
             removeSelectedCoin()
         }
         
@@ -125,7 +128,7 @@ struct PorfolioView: View {
         // hide checkmark
         DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
             withAnimation(.easeInOut) {
-                showCheckMark = false
+                showCheckmark = false
             }
         }
     }
