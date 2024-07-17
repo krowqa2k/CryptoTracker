@@ -46,10 +46,10 @@ struct HomeView: View {
     }
 }
 
-#Preview {
-    HomeView()
-        .environmentObject(HomeViewModel())
-}
+//#Preview {
+//    HomeView()
+//        .environmentObject(HomeViewModel())
+//}
 
 extension HomeView {
     

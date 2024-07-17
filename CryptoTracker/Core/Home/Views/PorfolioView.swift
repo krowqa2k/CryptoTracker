@@ -91,6 +91,11 @@ struct PorfolioView: View {
                     .font(.headline)
                 }
             }
+            .onChange(of: vm.searchText, perform: { value in
+                if value == "" {
+                    removeSelectedCoin()
+                }
+            })
         }
     }
     
