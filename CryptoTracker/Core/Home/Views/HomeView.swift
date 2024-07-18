@@ -20,6 +20,7 @@ struct HomeView: View {
                 Spacer(minLength: 0)
             
             HomeStatsView(showPortfolio: $showPortfolio)
+                .padding(.horizontal)
             
             SearchBarView(searchText: $vm.searchText)
                 .padding()
@@ -27,15 +28,27 @@ struct HomeView: View {
             columnTitles
                 .font(.caption)
                 .foregroundStyle(Color.theme.secondaryText)
-                .padding(.horizontal)
+                .padding()
             
             if !showPortfolio {
                 allCoinsList
                     .transition(.move(edge: .leading))
+                    .frame(maxWidth: .infinity)
+                    .frame(maxHeight: .infinity)
+                    .background(Color.theme.background)
+                    .cornerRadius(12)
+                    .shadow(color:Color.theme.accent ,radius: 5)
+                    .padding(.horizontal)
             }
             if showPortfolio {
                 portfolioCoinsList
                     .transition(.move(edge: .trailing))
+                    .frame(maxWidth: .infinity)
+                    .frame(maxHeight: .infinity)
+                    .background(Color.theme.background)
+                    .cornerRadius(12)
+                    .shadow(color:Color.theme.accent ,radius: 5)
+                    .padding(.horizontal)
             }
             
         }

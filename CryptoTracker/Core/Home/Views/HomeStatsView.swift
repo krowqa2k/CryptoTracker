@@ -14,24 +14,22 @@ struct HomeStatsView: View {
     
     var body: some View {
         VStack {
-            RoundedRectangle(cornerRadius: 12)
-                .frame(width: 385, height: 220)
-                .foregroundStyle(Color.theme.background)
-                .shadow(color:Color.theme.accent ,radius: 5)
-                .overlay {
-                    HStack {
-                        ForEach(vm.statistics) { stat in
-                            StatisticView(stat: stat)
-                                .frame(width: UIScreen.main.bounds.width / 3.12)
-                        }
+                HStack {
+                    ForEach(vm.statistics) { stat in
+                        StatisticView(stat: stat)
+                            .frame(width: UIScreen.main.bounds.width / 3.12)
                     }
-                    .frame(width: UIScreen.main.bounds.width, alignment: showPortfolio ? .trailing : .leading)
-                    .padding()
                 }
+                .frame(width: UIScreen.main.bounds.width, alignment: showPortfolio ? .trailing : .leading)
+                .padding(.horizontal)
+            }
+            .frame(maxWidth: 360)
+            .frame(maxHeight: 200)
+            .background(Color.theme.background)
+            .cornerRadius(12)
+            .shadow(color:Color.theme.accent ,radius: 5)
         }
-        .padding()
     }
-}
 
 #Preview {
     HomeStatsView(showPortfolio: .constant(false))

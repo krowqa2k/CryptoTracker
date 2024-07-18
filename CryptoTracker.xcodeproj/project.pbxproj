@@ -76,6 +76,29 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8452BCBE2C4928E400A04671 /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				8452BCC02C49292600A04671 /* Views */,
+				8452BCBF2C4928FF00A04671 /* ViewModels */,
+			);
+			path = Detail;
+			sourceTree = "<group>";
+		};
+		8452BCBF2C4928FF00A04671 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		8452BCC02C49292600A04671 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		846E31202C42C8FC00F62907 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -91,8 +114,7 @@
 			isa = PBXGroup;
 			children = (
 				846E31292C42CBF800F62907 /* Components */,
-				84D125612C4583190008FF36 /* SearchBarView.swift */,
-				84A545AD2C468B23005993B2 /* StatisticView.swift */,
+				8452BCBE2C4928E400A04671 /* Detail */,
 				846E31242C42CB1200F62907 /* Home */,
 			);
 			path = Core;
@@ -114,6 +136,8 @@
 				84A545AF2C469187005993B2 /* HomeStatsView.swift */,
 				84AF2E972C43FD5A00CB692D /* CoinRowView.swift */,
 				84A545B72C46AAF2005993B2 /* PortfolioView.swift */,
+				84A545AD2C468B23005993B2 /* StatisticView.swift */,
+				84D125612C4583190008FF36 /* SearchBarView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";

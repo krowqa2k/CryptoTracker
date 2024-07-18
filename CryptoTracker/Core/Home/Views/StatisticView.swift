@@ -13,7 +13,7 @@ struct StatisticView: View {
     
     var body: some View {
         RoundedRectangle(cornerRadius: 12)
-            .frame(width: 100, height: 100)
+            .frame(width: 80, height: 80)
             .foregroundStyle(Color.theme.background)
             .shadow(color:Color.theme.accent ,radius: 5)
             .overlay {
@@ -41,6 +41,7 @@ struct StatisticView: View {
                     .opacity(stat.percentageChange == nil ? 0.0 : 1.0)
                 }
             }
+            .padding(2)
     }
 }
 
