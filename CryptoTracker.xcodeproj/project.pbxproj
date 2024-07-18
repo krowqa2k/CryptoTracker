@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8452BCC22C49294E00A04671 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8452BCC12C49294E00A04671 /* DetailView.swift */; };
 		846E311F2C42C85D00F62907 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 846E311E2C42C85D00F62907 /* Assets.xcassets */; };
 		846E31222C42C91100F62907 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846E31212C42C91100F62907 /* Color.swift */; };
 		846E31282C42CB3600F62907 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846E31272C42CB3600F62907 /* HomeView.swift */; };
@@ -36,6 +37,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8452BCC12C49294E00A04671 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 		846E311E2C42C85D00F62907 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = ../../../Downloads/Resources/Assets.xcassets; sourceTree = "<group>"; };
 		846E31212C42C91100F62907 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		846E31272C42CB3600F62907 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
@@ -95,6 +97,7 @@
 		8452BCC02C49292600A04671 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				8452BCC12C49294E00A04671 /* DetailView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -323,6 +326,7 @@
 				84A545AE2C468B23005993B2 /* StatisticView.swift in Sources */,
 				84A545B42C46A15E005993B2 /* MarketDataService.swift in Sources */,
 				84E769262C42C47D00CE2003 /* CryptoTrackerApp.swift in Sources */,
+				8452BCC22C49294E00A04671 /* DetailView.swift in Sources */,
 				84E103512C482563000273D9 /* PortfolioContainer.xcdatamodeld in Sources */,
 				84AF2E9E2C44137700CB692D /* HomeViewModel.swift in Sources */,
 				846E312C2C42CC2000F62907 /* RoundedRectangleButtonView.swift in Sources */,
