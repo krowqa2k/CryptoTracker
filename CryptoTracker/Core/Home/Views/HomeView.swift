@@ -39,7 +39,7 @@ struct HomeView: View {
                     .frame(maxHeight: .infinity)
                     .background(Color.theme.background)
                     .cornerRadius(12)
-                    .shadow(color:Color.theme.accent ,radius: 5)
+                    .shadow(color:Color.theme.accent ,radius: 3)
                     .padding(.horizontal)
             }
             if showPortfolio {
@@ -49,7 +49,7 @@ struct HomeView: View {
                     .frame(maxHeight: .infinity)
                     .background(Color.theme.background)
                     .cornerRadius(12)
-                    .shadow(color:Color.theme.accent ,radius: 5)
+                    .shadow(color:Color.theme.accent ,radius: 3)
                     .padding(.horizontal)
             }
             

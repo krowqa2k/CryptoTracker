@@ -27,7 +27,7 @@ struct HomeStatsView: View {
             .frame(maxHeight: 200)
             .background(Color.theme.background)
             .cornerRadius(12)
-            .shadow(color:Color.theme.accent ,radius: 5)
+            .shadow(color:Color.theme.accent ,radius: 2)
         }
     }
 

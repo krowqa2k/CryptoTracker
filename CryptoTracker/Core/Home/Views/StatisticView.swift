@@ -13,14 +13,14 @@ struct StatisticView: View {
     
     var body: some View {
         RoundedRectangle(cornerRadius: 12)
-            .frame(width: 80, height: 80)
+            .frame(width: 97, height: 80)
             .foregroundStyle(Color.theme.background)
-            .shadow(color:Color.theme.accent ,radius: 5)
+            .shadow(color:Color.theme.accent ,radius: 2)
             .overlay {
                 VStack(alignment: .leading, spacing: 4) {
                     Text(stat.title)
                         .font(.caption)
-                        .foregroundStyle(Color.theme.secondaryText)
+                        .foregroundStyle(Color.theme.accent)
                 
                     Text(stat.value)
                         .font(.headline)
