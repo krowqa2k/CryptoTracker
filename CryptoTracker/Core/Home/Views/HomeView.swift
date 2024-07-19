@@ -14,55 +14,62 @@ struct HomeView: View {
     @State private var showPortfolioView: Bool = false
     @State private var selectedCoin: CoinModel? = nil
     @State private var showDetailView: Bool = false
+    @State private var showSettingsView: Bool = false
     
     var body: some View {
-        VStack {
-            homeHeader
-                .padding(.horizontal)
-                Spacer(minLength: 0)
+        ZStack {
+            Color.theme.background
+                .ignoresSafeArea()
+                .sheet(isPresented: $showPortfolioView, content: {
+                    PortfolioView()
+            })
             
-            HomeStatsView(showPortfolio: $showPortfolio)
-                .padding(.horizontal)
-            
-            SearchBarView(searchText: $vm.searchText)
-                .padding()
-            
-            columnTitles
-                .font(.caption)
-                .foregroundStyle(Color.theme.secondaryText)
-                .padding(.horizontal, 35)
-            
-            if !showPortfolio {
-                allCoinsList
-                    .transition(.move(edge: .leading))
-                    .frame(maxWidth: .infinity)
-                    .frame(maxHeight: .infinity)
-                    .background(Color.theme.background)
-                    .cornerRadius(12)
-                    .shadow(color:Color.theme.accent ,radius: 3)
+            VStack {
+                homeHeader
                     .padding(.horizontal)
-            }
-            if showPortfolio {
-                portfolioCoinsList
-                    .transition(.move(edge: .trailing))
-                    .frame(maxWidth: .infinity)
-                    .frame(maxHeight: .infinity)
-                    .background(Color.theme.background)
-                    .cornerRadius(12)
-                    .shadow(color:Color.theme.accent ,radius: 3)
+                    Spacer(minLength: 0)
+                
+                HomeStatsView(showPortfolio: $showPortfolio)
                     .padding(.horizontal)
+                
+                SearchBarView(searchText: $vm.searchText)
+                    .padding()
+                
+                columnTitles
+                    .font(.caption)
+                    .foregroundStyle(Color.theme.secondaryText)
+                    .padding(.horizontal, 35)
+                
+                if !showPortfolio {
+                    allCoinsList
+                        .transition(.move(edge: .leading))
+                        .frame(maxWidth: .infinity)
+                        .frame(maxHeight: .infinity)
+                        .background(Color.theme.background)
+                        .cornerRadius(12)
+                        .shadow(color:Color.theme.accent ,radius: 3)
+                        .padding(.horizontal)
+                }
+                if showPortfolio {
+                    portfolioCoinsList
+                        .transition(.move(edge: .trailing))
+                        .frame(maxWidth: .infinity)
+                        .frame(maxHeight: .infinity)
+                        .background(Color.theme.background)
+                        .cornerRadius(12)
+                        .shadow(color:Color.theme.accent ,radius: 3)
+                        .padding(.horizontal)
+                }
             }
-            
+            .sheet(isPresented: $showSettingsView, content: {
+                SettingsView()
+            })
         }
-        .background(Color.theme.background)
         .background(NavigationLink(
             destination: DetailLoadingView(coin: $selectedCoin),
             isActive: $showDetailView,
             label: { EmptyView() })
         )
-        .sheet(isPresented: $showPortfolioView, content: {
-            PortfolioView()
-        })
     }
 }
 
@@ -80,6 +87,8 @@ extension HomeView {
                 .onTapGesture {
                     if showPortfolio {
                         showPortfolioView.toggle()
+                    } else {
+                        showSettingsView.toggle()
                     }
                 }
             Spacer()
