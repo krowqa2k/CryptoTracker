@@ -9,7 +9,7 @@ import SwiftUI
 
 struct SettingsView: View {
     
-    let defaultURL = URL(string: "https://www.google.com")!
+    let aboutMe = URL(string: "https://github.com/krowqa2k")!
     let coingeckoURL = URL(string: "https://www.coingecko.com")!
     @Environment(\.presentationMode) var presentationMode
     
@@ -17,7 +17,24 @@ struct SettingsView: View {
         NavigationStack {
             List {
                 Section("Info about me") {
-                    
+                    HStack {
+                        Image("me")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(height: 100)
+                        VStack (alignment: .leading,spacing: 10){
+                            Text("App created by Mateusz Krówczyński.")
+                                .font(.callout)
+                                .fontWeight(.medium)
+                                .foregroundStyle(Color.theme.accent)
+                            Text("👇 You can reach me here.")
+                                .font(.callout)
+                                .fontWeight(.medium)
+                                .foregroundStyle(Color.theme.accent)
+                            Link("Github profile.", destination: aboutMe)
+                                .foregroundStyle(.blue)
+                        }
+                    }
                 }
                 Section("COINGECKO") {
                     VStack(alignment: .leading) {
