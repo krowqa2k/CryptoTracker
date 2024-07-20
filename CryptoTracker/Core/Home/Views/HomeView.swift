@@ -30,7 +30,7 @@ struct HomeView: View {
                     Spacer(minLength: 0)
                 
                 HomeStatsView(showPortfolio: $showPortfolio)
-                    .padding(.horizontal)
+                    .padding(.vertical)
                 
                 SearchBarView(searchText: $vm.searchText)
                     .padding()
@@ -39,6 +39,7 @@ struct HomeView: View {
                     .font(.caption)
                     .foregroundStyle(Color.theme.secondaryText)
                     .padding(.horizontal, 35)
+                    .padding(.vertical, 8)
                 
                 if !showPortfolio {
                     allCoinsList

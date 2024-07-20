@@ -22,15 +22,11 @@ struct LaunchView: View {
                 .ignoresSafeArea()
             
             Image("logo-transparent")
-                .frame(width: 100, height: 100)
+                .resizable()
+                .frame(width: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, height: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/)
             
             ZStack {
                 if showLoadingText {
-//                    Text(loadingText)
-//                        .font(.headline)
-//                        .fontWeight(.heavy)
-//                        .foregroundStyle(Color.launch.accent)
-//
                     HStack(spacing: 0) {
                         ForEach(loadingText.indices) { index in
                             Text(loadingText[index])

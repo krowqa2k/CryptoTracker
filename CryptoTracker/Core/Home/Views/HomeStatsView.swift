@@ -17,14 +17,13 @@ struct HomeStatsView: View {
                 HStack {
                     ForEach(vm.statistics) { stat in
                         StatisticView(stat: stat)
-                            .frame(width: UIScreen.main.bounds.width / 3.12)
+                            .frame(width: (UIScreen.main.bounds.width / 3.12))
                     }
                 }
                 .frame(width: UIScreen.main.bounds.width, alignment: showPortfolio ? .trailing : .leading)
-                .padding(.horizontal)
             }
             .frame(maxWidth: 360)
-            .frame(maxHeight: 200)
+            .frame(maxHeight: 100)
             .background(Color.theme.background)
             .cornerRadius(12)
             .shadow(color:Color.theme.accent ,radius: 2)
